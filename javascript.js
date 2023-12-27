@@ -1,4 +1,4 @@
-const playerChoice = 'rock';
+let playerChoice = 'null';
 const cpuChoice = getComputerChoice();
 console.log(game())
 
@@ -57,7 +57,7 @@ function game(){
     let cpuScore = 0;
     
     while(yourScore != 3 || cpuScore != 3){
-        
+        getUserChoice();
         if(round(playerChoice, getComputerChoice()) === 0){
             yourScore++;
             console.log("You won this round!")
@@ -83,4 +83,8 @@ function game(){
             }
         }
     }
+}
+
+function getUserChoice(){
+    playerChoice = prompt().toUpperCase();
 }
