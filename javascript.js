@@ -1,6 +1,6 @@
 const playerChoice = 'rock';
 const cpuChoice = getComputerChoice();
-console.log(theGame(playerChoice, cpuChoice));
+console.log(game())
 
 function getComputerChoice(){
     let choice = Math.floor(Math.random() * 3);
@@ -17,37 +17,70 @@ function getComputerChoice(){
     
 }
 
-function theGame(playerChoice, cpuChoice){
+function round(playerChoice, cpuChoice){
 let user = playerChoice.toUpperCase();
 if (user == cpuChoice){
-    return "Its a tie! both players chose " + cpuChoice + "!";
+    return 2;
 }
 else if (user == 'ROCK'){
     if (cpuChoice == 'PAPER'){
-        return "The computer wins with " + cpuChoice + ".";
+        return 1;
     }
     else{
-        return "You win! Cpu chose " + cpuChoice + ".";
+        return 0;
     }
 }
 else if (user == 'PAPER'){
     if (cpuChoice == 'SCISSORS'){
-        return "The computer wins with " + cpuChoice + ".";
+        return 1;
     }
     else{
-        return "You win! Cpu chose " + cpuChoice + ".";
+        return 0;
     }
 }
 else if (user == 'SCISSORS'){
     if (cpuChoice == 'ROCK'){
-        return "The computer wins with " + cpuChoice + ".";
+        return 1;
     }
     else{
-        return "You win! Cpu chose " + cpuChoice + ".";
+        return 0;
     }
 }
 else{
-    return "error has occured"
+    return "error"
 }
 
+}
+
+function game(){
+    let yourScore = 0;
+    let cpuScore = 0;
+    
+    while(yourScore != 3 || cpuScore != 3){
+        
+        if(round(playerChoice, getComputerChoice()) === 0){
+            yourScore++;
+            console.log("You won this round!")
+        }else if(round(playerChoice, getComputerChoice()) === 1){
+            cpuScore++;
+            console.log("you lost this round...")
+        }else if(round(playerChoice, getComputerChoice()) === 2){
+            console.log("This round was a tie!")
+        }
+        if (yourScore == 3 || cpuScore == 3){
+            if (yourScore > cpuScore){
+                console.log(yourScore);
+                console.log(cpuScore);
+                return "You Win the BO5!";
+            }else if (yourScore < cpuScore){
+                console.log(yourScore);
+                console.log(cpuScore);
+                return "You lose the BO5...";
+            }
+            else{
+                console.log(yourScore);
+                console.log(cpuScore);
+            }
+        }
+    }
 }
